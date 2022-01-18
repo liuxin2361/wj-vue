@@ -1,10 +1,16 @@
 <template>
-  <div>hello world!</div>
+  <div>
+    <side-menu></side-menu>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
+import SideMenu from "./SideMenu";
+
 export default {
-  name: "AppIndex"
+  name: "AppIndex",
+  components: {SideMenu},
 }
 </script>
 
