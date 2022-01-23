@@ -69,6 +69,15 @@ const router = new VueRouter({
       name: 'Login',
       component: Login
     },
+    {
+      path: '/',
+      name: 'index',
+      component: AppIndex,
+      redirect: '/index',
+      meta: {
+        requireAuth: true
+      }
+    }
   ],
 })
 

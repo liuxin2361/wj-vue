@@ -3,26 +3,26 @@
     <i class="el-icon-circle-plus-outline" @click="dialogFormVisible = true"></i>
     <el-dialog title="添加/修改图书" :visible.sync="dialogFormVisible" @close="clear">
       <el-form :model="form">
-        <el-form-item label="书名" :label-width="formLabelWidth">
+        <el-form-item label="书名" :label-width="formLabelWidth" prop="title">
           <el-input v-model="form.title" autocomplete="off" placeholder="不加《》"></el-input>
         </el-form-item>
-        <el-form-item label="作者" :label-width="formLabelWidth">
+        <el-form-item label="作者" :label-width="formLabelWidth" prop="author">
           <el-input v-model="form.author" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="出版日期" :label-width="formLabelWidth">
+        <el-form-item label="出版日期" :label-width="formLabelWidth" prop="date">
           <el-input v-model="form.date" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="出版社" :label-width="formLabelWidth">
+        <el-form-item label="出版社" :label-width="formLabelWidth" prop="press">
           <el-input v-model="form.press" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="封面" :label-width="formLabelWidth">
+        <el-form-item label="封面" :label-width="formLabelWidth" prop="cover">
           <el-input v-model="form.cover" autocomplete="off" placeholder="图片URL"></el-input>
         </el-form-item>
-        <el-form-item label="简介" :label-width="formLabelWidth">
+        <el-form-item label="简介" :label-width="formLabelWidth" prop="abs">
           <el-input type="textarea" v-model="form.abs" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="分类" :label-width="formLabelWidth">
-          <el-select v-model="form.category.id" placeholder="请选择分类">
+        <el-form-item label="分类" :label-width="formLabelWidth" prop="cid">
+          <el-select v-model="form.category.id" placeholder="请选择分类" style="float: left">
             <el-option label="文学" value="1"></el-option>
             <el-option label="流行" value="2"></el-option>
             <el-option label="文化" value="3"></el-option>
@@ -32,7 +32,7 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <el-form-item>
+      <el-form-item prop="id" style="height: 0">
         <el-input type="hidden" v-model="form.id" autocomplete="off"></el-input>
       </el-form-item>
       <div slot="footer" class="dialog-footer">
@@ -75,10 +75,7 @@ export default {
         press: '',
         cover: '',
         abs: '',
-        category: {
-          id: '',
-          name: ''
-        }
+        category: ''
       }
     },
     onSubmit() {
