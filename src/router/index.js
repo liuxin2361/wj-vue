@@ -2,9 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
 // 导入刚才编写的组件
-import Login from "../components/Login";
-import AppIndex from "../components/home/AppIndex";
-import Home from "../components/home/Home";
+import Login from "../components/Login"
+import AppIndex from "../components/home/AppIndex"
+import Home from "../components/home/Home"
+import LibraryIndex from "../components/library/LibraryIndex"
 
 Vue.use(VueRouter)
 
@@ -52,6 +53,14 @@ const router = new VueRouter({
           meta: {
             requireAuth: true
           }
+        },
+        {
+          path: '/library',
+          name: 'Library',
+          component: LibraryIndex,
+          meta: {
+            requireAuth: true
+          },
         }
       ]
     },

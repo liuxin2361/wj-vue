@@ -4,9 +4,12 @@
     <el-menu-item v-for="(item, i) in navList" :key="i" :index="item.name">
       {{ item.navItem }}
     </el-menu-item>
-    <a href="#nowhere" style="color: #222;float: right;padding: 20px;">更多功能</a>
-    <i class="el-icon-menu" style="float:right;font-size: 45px;color: #222;padding-top: 8px"></i>
-    <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">White Jotter - Your Mind Palace</span>
+    <a href="#nowhere">更多功能</a>
+    <i class="el-icon-menu"></i>
+    <span>White Jotter - Your Mind Palace</span>
+    <el-input placeholder="快速搜索" prefix-icon="el-icon-search" size="medium"
+              style="width: 300px; position: absolute; margin-top: 10px;right: 25%" v-model="keywords"
+              @keyup.enter.native="search"></el-input>
   </el-menu>
 </template>
 
@@ -21,6 +24,11 @@ export default {
         {name: '/library', navItem: '图书馆'},
         {name: '/admin', navItem: '个人中心'}
       ],
+      keywords: ''
+    }
+  },
+  methods: {
+    search() {
     }
   }
 }
@@ -29,9 +37,24 @@ export default {
 <style scoped>
 span {
   pointer-events: none;
+  position: absolute;
+  padding-top: 20px;
+  right: 43%;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 a {
   text-decoration: none;
+  color: #222;
+  float: right;
+  padding: 20px;
+}
+
+i {
+  float: right;
+  font-size: 45px;
+  color: #222;
+  padding-top: 8px
 }
 </style>
