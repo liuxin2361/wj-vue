@@ -1,5 +1,5 @@
 <template>
-  <el-menu default-active="0" class="categories" active-text-color="red">
+  <el-menu default-active="0" class="categories" active-text-color="red" @select="handleSelect">
     <el-menu-item index="0">
       <i class="el-icon-menu"></i>
       <span slot="title">全部</span>
@@ -33,7 +33,14 @@
 
 <script>
 export default {
-  name: "SideMenu"
+  name: "SideMenu",
+  methods: {
+    // https://element.eleme.io/#/zh-CN/component/menu
+    handleSelect(index, indexPath) {
+      this.cid = index;
+      this.$emit('indexSelect')
+    }
+  }
 }
 </script>
 

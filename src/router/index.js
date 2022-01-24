@@ -40,6 +40,15 @@ const router = new VueRouter({
   mode: "history", // 路径中不用#
   routes: [
     {
+      path: '/',
+      name: 'Default',
+      redirect: '/home',
+      component: Home,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
       path: '/home',
       name: 'Home',
       component: Home,

@@ -103,7 +103,7 @@ export default {
         cover: item.cover,
         abs: item.abs,
         category: {
-          id: item.category.id,
+          id: item.category.id.toString(),
           name: item.category.name
         }
       }
