@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     login() {
-      var _this = this
+      // var _this = this
       console.log(this.$store.state)
       this.$axios
         .post('/login', {
@@ -40,10 +40,10 @@ export default {
         })
         .then(response => {
           if (response.data.code == 200) {
-            _this.$store.commit('login', _this.loginForm)
+            this.$store.commit('login', this.loginForm)
             // this.$route当前激活的路由的信息对象  是 $router正在跳转的路由对象
             // http://localhost:8080/login?redirect=%2Findex 重定向时带有原路径参数
-            var path = this.$route.query.redirect
+            let path = this.$route.query.redirect
             // this.$router：全局的 router 实例。通过 vue 根实例中注入 router 实例，然后再注入到每个子组件，从而让整个应用都有路由功能。其中包含了很多属性和对象（比如 history 对象），任何页面也都可以调用其 push(), replace(), go() 等方法。
             this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
           }
@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .login-container {
   border-radius: 15px; /*边框圆角 */
   width: 350px;
@@ -82,7 +82,7 @@ export default {
   position: fixed; /*元素的位置相对于浏览器窗口是固定位置。即使窗口是滚动的它也不会移动：*/
 }
 
-body{
-  margin: 0; /*解决页面顶端8px空白*/
-}
+/*body{*/
+/*  margin: 0; !*解决页面顶端8px空白*!*/
+/*}*/
 </style>

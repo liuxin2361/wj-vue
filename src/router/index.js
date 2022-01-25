@@ -6,6 +6,7 @@ import Login from "../components/Login"
 import AppIndex from "../components/home/AppIndex"
 import Home from "../components/home/Home"
 import LibraryIndex from "../components/library/LibraryIndex"
+import Register from "../components/Register"
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,11 @@ const router = new VueRouter({
       name: 'Login',
       component: Login
     },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    }
   ],
 })
 
