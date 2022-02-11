@@ -4,8 +4,8 @@
     <el-menu-item v-for="(item, i) in navList" :key="i" :index="item.name">
       {{ item.navItem }}
     </el-menu-item>
-    <a href="#nowhere">更多功能</a>
-    <i class="el-icon-menu"></i>
+<!--    <a href="#nowhere">更多功能</a>-->
+    <i class="el-icon-switch-button" v-on:click="logout"></i>
     <span>White Jotter - Your Mind Palace</span>
     <el-input placeholder="快速搜索" prefix-icon="el-icon-search" size="medium"
               style="width: 300px; position: absolute; margin-top: 10px;right: 25%" v-model="keywords"
@@ -29,6 +29,14 @@ export default {
   },
   methods: {
     search() {
+    },
+    logout() {
+      this.$axios.get('/logout').then(resp => {
+        if (resp.data.code === 200) {
+          this.$store.commit('logout')
+          this.$router.replace('/login')
+        }
+      })
     }
   }
 }
@@ -53,8 +61,10 @@ a {
 
 i {
   float: right;
-  font-size: 45px;
+  font-size: 40px;
   color: #222;
-  padding-top: 8px
+  padding: 10px;
+  cursor: pointer;
+  outline: 0;
 }
 </style>

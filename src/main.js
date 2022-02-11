@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 let axios = require('axios');
 axios.defaults.baseURL = 'http://localhost:8443/api'
+axios.defaults.withCredentials = true // 为了让前端能够带上 cookie，我们需要通过 axios 主动开启 withCredentials 功能
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
