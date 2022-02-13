@@ -7,6 +7,7 @@ import AppIndex from "../components/home/AppIndex"
 import Home from "../components/home/Home"
 import LibraryIndex from "../components/library/LibraryIndex"
 import Register from "../components/Register"
+import AdminIndex from "../components/user/AdminIndex"
 
 Vue.use(VueRouter)
 
@@ -37,54 +38,62 @@ Vue.use(VueRouter)
 // ]
 
 const router = new VueRouter({
-  // 路由启用history模式
-  mode: "history", // 路径中不用#
-  routes: [
-    {
-      path: '/',
-      name: 'Default',
-      redirect: '/home',
-      component: Home,
-      meta: {
-        requireAuth: true
-      }
-    },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home,
-      // home页面并不需要被访问
-      redirect: '/index',
-      children: [
+    // 路由启用history模式
+    mode: "history", // 路径中不用#
+    routes: [
         {
-          path: '/index',
-          name: 'AppIndex',
-          component: AppIndex,
-          meta: {
-            requireAuth: true
-          }
+            path: '/',
+            name: 'Default',
+            redirect: '/home',
+            component: Home,
+            meta: {
+                requireAuth: true
+            }
         },
         {
-          path: '/library',
-          name: 'Library',
-          component: LibraryIndex,
-          meta: {
-            requireAuth: true
-          },
+            path: '/home',
+            name: 'Home',
+            component: Home,
+            // home页面并不需要被访问
+            redirect: '/index',
+            children: [
+                {
+                    path: '/index',
+                    name: 'AppIndex',
+                    component: AppIndex,
+                    meta: {
+                        requireAuth: true
+                    }
+                },
+                {
+                    path: '/library',
+                    name: 'Library',
+                    component: LibraryIndex,
+                    meta: {
+                        requireAuth: true
+                    },
+                }
+            ]
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login
+        },
+        {
+            path: '/register',
+            name: 'Register',
+            component: Register
+        },
+        {
+            path: '/admin',
+            name: 'AdminIndex',
+            component: AdminIndex,
+            meta: {
+                requireAuth: true
+            },
         }
-      ]
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
-    }
-  ],
+    ],
 })
 
 export default router

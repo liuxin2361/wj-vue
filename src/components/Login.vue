@@ -40,7 +40,7 @@ export default {
         })
         .then(response => {
           if (response.data.code == 200) {
-            this.$store.commit('login', this.loginForm)
+            this.$store.commit('login', response.data.result)
             // this.$route当前激活的路由的信息对象  是 $router正在跳转的路由对象
             // http://localhost:8080/login?redirect=%2Findex 重定向时带有原路径参数
             let path = this.$route.query.redirect

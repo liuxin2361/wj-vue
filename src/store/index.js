@@ -4,21 +4,19 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  state: {
-    user: {
-      username: window.sessionStorage.getItem('user' || '[]') == null? '': JSON.parse(window.sessionStorage.getItem('user' || '[]')).username
-    }
-  },
-  mutations: {
-    login(state, user) {
-      state.user = user
-      window.sessionStorage.setItem('user', JSON.stringify(user))
+    state: {
+        username: window.sessionStorage.getItem('username') == null ? '' : JSON.parse(window.sessionStorage.getItem('username'))
     },
-    logout(state) {
-      state.user = []
-      window.sessionStorage.removeItem('user')
+    mutations: {
+        login(state, data) {
+            state.username = data
+            window.sessionStorage.setItem('username', JSON.stringify(data))
+        },
+        logout(state) {
+            state.username = ''
+            window.sessionStorage.removeItem('username')
+        }
     }
-  }
 })
 
 export default store

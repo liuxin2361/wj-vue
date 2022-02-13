@@ -18,25 +18,29 @@ Vue.use(ElementUI)
 
 // 导航守卫进行拦截验证
 router.beforeEach((to, from, next) => {
-  if (to.meta.requireAuth) {
-    if (store.state.user.username) {
-      next()
+    if (to.meta.requireAuth) {
+        if (store.state.username) {
+            axios.get('/authentication').then(resp => {
+                if (resp) {
+                    next()
+                }
+            })
+        } else {
+            next({
+                path: '/login',
+                query: {redirect: to.fullPath} // query 传参
+            })
+        }
     } else {
-      next({
-        path: '/login',
-        query: {redirect: to.fullPath} // query 传参
-      })
+        next()
     }
-  } else {
-    next()
-  }
 })
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  store, // 应用store
-  components: {App},
-  template: '<App/>'
+    el: '#app',
+    router,
+    store, // 应用store
+    components: {App},
+    template: '<App/>'
 })
