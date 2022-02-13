@@ -32,7 +32,7 @@ export default {
     },
     logout() {
       this.$axios.get('/logout').then(resp => {
-        if (resp.data.code === 200) {
+        if (resp && resp.data.code === 200) {
           this.$store.commit('logout')
           this.$router.replace('/login')
         }
