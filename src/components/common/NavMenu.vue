@@ -4,7 +4,7 @@
     <el-menu-item v-for="(item, i) in navList" :key="i" :index="item.name">
       {{ item.navItem }}
     </el-menu-item>
-<!--    <a href="#nowhere">更多功能</a>-->
+    <!--    <a href="#nowhere">更多功能</a>-->
     <i class="el-icon-switch-button" v-on:click="logout"></i>
     <span>White Jotter - Your Mind Palace</span>
     <el-input placeholder="快速搜索" prefix-icon="el-icon-search" size="medium"
@@ -36,6 +36,7 @@ export default {
           this.$store.commit('logout')
           this.$router.replace('/login')
         }
+      }).catch(failResponse => {
       })
     }
   }

@@ -18,6 +18,15 @@ Vue.use(ElementUI)
 
 // 导航守卫进行拦截验证
 router.beforeEach((to, from, next) => {
+    if (store.state.username && to.path.startsWith('/admin')) {
+        initAdminMenu(router, store)
+    }
+    // 已登录状态下访问 login 页面直接跳转到后台首页
+    if (store.state.username && to.path.startsWith('/login')) {
+        next({
+            path: 'admin/dashboard'
+        })
+    }
     if (to.meta.requireAuth) {
         if (store.state.username) {
             axios.get('/authentication').then(resp => {
@@ -35,6 +44,40 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
+
+const initAdminMenu = (router, store) => {
+    if (store.state.adminMenus.length > 0) {
+        return
+    }
+    axios.get('/menu').then(resp => {
+        if (resp && resp.status === 200) {
+            let fmtRoutes = formatRoutes(resp.data.result)
+            store.commit('initAdminMenu', fmtRoutes)
+        }
+    })
+}
+
+const formatRoutes = (routes) => {
+    let fmtRoutes = []
+    routes.forEach(route => {
+        if (route.children) {
+            route.children = formatRoutes(route.children)
+        }
+        let fmtRoute = {
+            path: route.path,
+            name: route.name,
+            nameZh: route.nameZh,
+            iconCls: route.iconCls,
+            children: route.children,
+            meta: {
+                requireAuth: true
+            },
+            component: route.component,
+        }
+        fmtRoutes.push(fmtRoute)
+    })
+    return fmtRoutes
+}
 
 /* eslint-disable no-new */
 new Vue({

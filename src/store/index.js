@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        username: window.sessionStorage.getItem('username') == null ? '' : JSON.parse(window.sessionStorage.getItem('username'))
+        username: window.sessionStorage.getItem('username') == null ? '' : JSON.parse(window.sessionStorage.getItem('username')),
+        adminMenus: []
     },
     mutations: {
         login(state, data) {
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
         logout(state) {
             state.username = ''
             window.sessionStorage.removeItem('username')
+        },
+        initAdminMenu(state, data) {
+            state.adminMenus = data
         }
     }
 })
