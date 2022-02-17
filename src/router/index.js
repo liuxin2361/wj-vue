@@ -1,15 +1,14 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
+import Router from 'vue-router'
 // 导入刚才编写的组件
 import Login from "../components/Login"
 import AppIndex from "../components/home/AppIndex"
 import Home from "../components/home/Home"
 import LibraryIndex from "../components/library/LibraryIndex"
 import Register from "../components/Register"
-import AdminIndex from "../components/user/AdminIndex"
+import AdminIndex from "../components/admin/AdminIndex"
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
 // const routes = [
 // {
@@ -37,7 +36,7 @@ Vue.use(VueRouter)
 //   }
 // ]
 
-const router = new VueRouter({
+const router = new Router({
     // 路由启用history模式
     mode: "history", // 路径中不用#
     routes: [

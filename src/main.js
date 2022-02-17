@@ -52,6 +52,7 @@ const initAdminMenu = (router, store) => {
     axios.get('/menu').then(resp => {
         if (resp && resp.status === 200) {
             let fmtRoutes = formatRoutes(resp.data.result)
+            router.addRoutes(fmtRoutes)
             store.commit('initAdminMenu', fmtRoutes)
         }
     })
@@ -72,7 +73,7 @@ const formatRoutes = (routes) => {
             meta: {
                 requireAuth: true
             },
-            component: route.component,
+            component: () => import('./components/admin/' + route.component) // 异步组件按需加载
         }
         fmtRoutes.push(fmtRoute)
     })
